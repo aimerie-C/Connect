@@ -1,25 +1,26 @@
-using System.Data.Common;
+using System;
 
 class GameBoard
 {
-    private char[,] board;
+    private char[,] _board;
     public int Rows { get; private set; }
     public int Cols { get; private set; }
 
     public GameBoard(int rows, int cols)
     {
-        Rows = rows; 
+        Rows = rows;
         Cols = cols;
-        board = new char[Rows, Cols];
+        _board = new char[Rows, Cols];
         InitializeBoard();
     }
+
     public void InitializeBoard()
     {
         for (int rows = 0; rows < Rows; rows++)
         {
             for (int cols = 0; cols < Cols; cols++)
             {
-                board[rows, cols] = ' ';
+                _board[rows, cols] = ' ';
             }
         }
     }
@@ -28,6 +29,25 @@ class GameBoard
     {
         // Reset the board to its initial state
         InitializeBoard();
+    }
+
+    public void DrawBoard()
+    {
+        Console.Clear();
+
+        Console.WriteLine();
+       
+        for (int rows = 0; rows < Rows; rows++)
+        {
+            Console.Write("|");
+            for (int cols = 0; cols < Cols; cols++)
+            {
+                char symbol = _board[rows, cols] == ' ' ? '#' : _board[rows, cols];
+                Console.Write(symbol + " ");
+            }
+            Console.WriteLine("|");
+        }
+        Console.WriteLine(" 1 2 3 4 5 6 7");
     }
 }
 
