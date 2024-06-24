@@ -1,3 +1,18 @@
+using System.Data.Common;
+
+class GameBoard
+{
+    private char[,] board;
+    public int Rows { get; private set; }
+    public int Cols { get; private set; }
+
+}
+
+
+
+
+
+
 class Program
 {
     static void Main(string[] args)
