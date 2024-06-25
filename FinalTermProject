@@ -93,6 +93,10 @@ class GameBoard
         }
         return true;
     }
+    public bool CheckWin(char symbol)
+    {
+        return CheckStraightLines(symbol) || CheckDiagonals(symbol);
+    }
 }
 
 
