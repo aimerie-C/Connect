@@ -36,18 +36,34 @@ class GameBoard
         Console.Clear();
 
         Console.WriteLine();
-       
+        ConsoleColor originalColor = Console.ForegroundColor; // Store original color
+        Console.ForegroundColor = ConsoleColor.White; // Set table color to white
+
         for (int rows = 0; rows < Rows; rows++)
         {
             Console.Write("|");
             for (int cols = 0; cols < Cols; cols++)
             {
                 char symbol = _board[rows, cols] == ' ' ? '#' : _board[rows, cols];
-                Console.Write(symbol + " ");
+                ConsoleColor symbolColor = ConsoleColor.White; // Default symbol color
+                
+                 if (symbol == 'X')
+                 {
+                     symbolColor = ConsoleColor.Green;
+                 }
+                 else if (symbol == 'O')
+                 {
+                     symbolColor = ConsoleColor.DarkYellow;
+                 }
+                
+                 Console.ForegroundColor = symbolColor;
+                 Console.Write(symbol + " ");
             }
             Console.WriteLine("|");
         }
-        Console.WriteLine(" 1 2 3 4 5 6 7");
+         Console.ForegroundColor = ConsoleColor.White; // Reset to original white
+         Console.WriteLine(" 1 2 3 4 5 6 7");
+         Console.ForegroundColor = originalColor; // Reset to original color
     }
 
     public bool PlaceSymbol(int cols, char symbol)
@@ -216,6 +232,9 @@ class GameSetup : GameModeSelector
      {
          int numPlayers;
 
+         ConsoleColor originalColor = Console.ForegroundColor; // Store original color
+         Console.ForegroundColor = ConsoleColor.White; // Set text color to white
+
          do
          {
              Console.WriteLine("Choose game mode:");
@@ -224,7 +243,9 @@ class GameSetup : GameModeSelector
              Console.WriteLine();
              Console.WriteLine("Choose the number of players (1 or 2):");
          } while (!int.TryParse(Console.ReadLine(), out numPlayers) || (numPlayers != 1 && numPlayers != 2));
-    
+
+         Console.ForegroundColor = originalColor;
+
          return numPlayers;
      }
 
