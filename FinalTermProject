@@ -79,7 +79,7 @@ class GameBoard
          }
          return false; // Column is full
      }
-        public bool IsBoardFull()
+    public bool IsBoardFull()
     {
         for (int rows = 0; rows < Rows; rows++)
         {
@@ -97,6 +97,23 @@ class GameBoard
     {
         return CheckStraightLines(symbol) || CheckDiagonals(symbol);
     }
+
+     private bool CheckStraightLines(char symbol)
+     {
+         // Check horizontally and vertically for four consecutive symbols
+         for (int rows = 0; rows < Rows; rows++)
+         {
+             for (int cols = 0; cols < Cols - 3; cols++)
+             {
+                 if (_board[rows, cols] == symbol &&
+                     _board[rows, cols] == _board[rows, cols + 1] &&
+                     _board[rows, cols] == _board[rows, cols + 2] &&
+                     _board[rows, cols] == _board[rows, cols + 3])
+                 {
+                     return true;
+                 }
+             }
+         }
 }
 
 
