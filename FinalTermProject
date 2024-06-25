@@ -228,6 +228,43 @@ class GameSetup : GameModeSelector
          return numPlayers;
      }
 
+    public string GetPlayerName(int playerNumber)
+    {
+    
+        ConsoleColor originalColor = Console.ForegroundColor;
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.Write($"Enter Player {playerNumber}'s name: ");
+        return Console.ReadLine();
+        Console.ForegroundColor = originalColor;
+    }
+    
+    public Player[] InitializePlayers(int numPlayers)
+    {
+        Player[] players;
+    
+        if (numPlayers == 1)
+        {
+            Console.WriteLine("You've chosen Single Player mode (vs AI).");
+            Console.WriteLine();
+            string player1Name = GetPlayerName(1);
+            Player humanPlayer = new Player(player1Name, 'X');
+            AIPlayer aiPlayer = new AIPlayer();
+            players = new Player[] { humanPlayer, aiPlayer };
+        }
+        else
+        {
+            Console.WriteLine("You've chosen Two Players mode.");
+            Console.WriteLine();
+            string player1Name = GetPlayerName(1);
+            string player2Name = GetPlayerName(2);
+            Player player1 = new Player(player1Name, 'X');
+            Player player2 = new Player(player2Name, 'O');
+            players = new Player[] { player1, player2 };
+        }
+    
+        return players;
+    }
+
 }
 
 
