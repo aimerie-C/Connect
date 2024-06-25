@@ -434,7 +434,7 @@ class GameController
             Console.WriteLine("\nThank you for playing!");
             Environment.Exit(0);
         }
-}
+    }
 }
 
 
@@ -442,7 +442,26 @@ class Program
 {
     static void Main(string[] args)
     {
+        const int Cols = 7;
+        const int Rows = 6;
+
         Console.WriteLine("Welcome to Connect Four! \n");
+
+        // Create GameSetup instance
+        GameSetup gameSetup = new GameSetup();
+
+        // Choose game mode
+        int numPlayers = gameSetup.ChooseGameMode();
+
+        // Initialize players
+        Player[] players = gameSetup.InitializePlayers(numPlayers);
+
+        // Initialize game components
+        GameBoard board = new GameBoard(Rows, Cols);
+        GameController gameController = new GameController(board, players);
+
+        // Start the game
+        gameController.StartGame();
     }
 }
 
