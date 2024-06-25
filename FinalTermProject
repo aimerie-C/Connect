@@ -333,6 +333,52 @@ class GameController
     
         PromptForRestart();
     }
+    private int GetPlayerMove(Player player)
+    {
+        int column;
+    
+        ConsoleColor originalColor = Console.ForegroundColor; // Store original color
+    
+        // Set color based on player
+        if (player.Symbol == 'X')
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+        }
+        else if (player.Symbol == 'O')
+        {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+        }
+    
+    
+        while (true)
+        {
+            Console.Write($"\nPlayer {player.Name}'s turn. Enter column number (1-7): \n");
+            string input = Console.ReadLine().Trim();
+    
+            if (input.Length == 1 && char.IsDigit(input[0]))
+            {
+                int userInput = input[0] - '0'; // Convert char '1'-'7' to int 1-7
+                int columnToPlace = userInput - 1; // Convert to 0-based index
+    
+                if (columnToPlace >= 0 && columnToPlace < _board.Cols && _board.IsColumnOpen(columnToPlace))
+                {
+                    column = columnToPlace;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid column or column is full. Please choose another column.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a number between 1 and 7.");
+            }
+        }
+        Console.ForegroundColor = originalColor;
+    
+        return column;
+    }
 }
 
 
