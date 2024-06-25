@@ -400,6 +400,41 @@ class GameController
     
         return column;
     }
+    private void PromptForRestart()
+    {
+        Console.Write("Do you want to play again? (press 'r' to Restart or 'm' to change Mode): \n");
+        Console.Write("Press any key to exit!");
+        ConsoleKeyInfo key = Console.ReadKey(true); // Read a single key without displaying it
+    
+        if (key.KeyChar == 'r' || key.KeyChar == 'R')
+        {
+            // Reset game state if needed and start a new game
+            _board.ResetBoard();
+            _currentPlayerIndex = 0;
+            StartGame();
+        }
+        else if (key.KeyChar == 'm' || key.KeyChar == 'M')
+        {
+            Console.Clear();
+    
+            // Change game mode
+            GameSetup setup = new GameSetup();
+            int newGameMode = setup.ChooseGameMode();
+    
+            // Initialize new players based on the new game mode
+            _players = setup.InitializePlayers(newGameMode);
+    
+            // Reset game state and start a new game
+            _board.ResetBoard();
+            _currentPlayerIndex = 0;
+            StartGame();
+        }
+        else
+        {
+            Console.WriteLine("\nThank you for playing!");
+            Environment.Exit(0);
+        }
+}
 }
 
 
