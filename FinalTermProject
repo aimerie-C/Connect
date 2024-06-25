@@ -261,12 +261,17 @@ class GameSetup : GameModeSelector
             Player player2 = new Player(player2Name, 'O');
             players = new Player[] { player1, player2 };
         }
-    
         return players;
     }
-
 }
 
+class GameController
+{
+    private GameBoard _board;
+    private Player[] _players;
+    private int _currentPlayerIndex;
+
+}
 
 
 class Program
