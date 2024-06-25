@@ -114,6 +114,23 @@ class GameBoard
                  }
              }
          }
+
+        for (int cols = 0; cols < Cols; cols++)
+        {
+            for (int rows = 0; rows < Rows - 3; rows++)
+            {
+                if (_board[rows, cols] == symbol &&
+                    _board[rows, cols] == _board[rows + 1, cols] &&
+                    _board[rows, cols] == _board[rows + 2, cols] &&
+                    _board[rows, cols] == _board[rows + 3, cols])
+                {
+                    return true;
+                }
+            }
+        }
+    
+        return false;
+}
 }
 
 
