@@ -180,6 +180,22 @@ class AIPlayer : Player
     {
         _random = new Random();
     }
+    public int GetMove(GameBoard board)
+    {
+        int col;
+        do
+        {
+            col = _random.Next(board.Cols); // Randomly select a column
+        } while (!IsValidMove(board, col)); // Check if it's a valid move
+    
+        return col;
+    }
+    
+    private bool IsValidMove(GameBoard board, int col)
+    {
+        // Check if there's any empty space in the column
+        return board.IsColumnOpen(col);
+    }
 }
 
 
