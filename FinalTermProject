@@ -147,7 +147,17 @@ class GameBoard
                 {
                     return true;
                 }
-    }
+                      // Check "/" diagonals
+                if (_board[rows, Cols - 1 - cols] == symbol &&
+                    _board[rows, Cols - 1 - cols] == _board[rows + 1, Cols - 2 - cols] &&
+                    _board[rows, Cols - 1 - cols] == _board[rows + 2, Cols - 3 - cols] &&
+                    _board[rows, Cols - 1 - cols] == _board[rows + 3, Cols - 4 - cols])
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
 }
 
 
