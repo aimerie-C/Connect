@@ -198,6 +198,11 @@ class AIPlayer : Player
     }
 }
 
+abstract class GameModeSelector
+{
+    public abstract int ChooseGameMode();
+}
+
 
 
 
