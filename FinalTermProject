@@ -130,7 +130,24 @@ class GameBoard
         }
     
         return false;
-}
+        }
+
+    private bool CheckDiagonals(char symbol)
+    {
+        // Check diagonally (both directions) for four consecutive symbols
+        for (int rows = 0; rows < Rows - 3; rows++)
+        {
+            for (int cols = 0; cols < Cols - 3; cols++)
+            {
+                // Check "\" diagonals
+                if (_board[rows, cols] == symbol &&
+                    _board[rows, cols] == _board[rows + 1, cols + 1] &&
+                    _board[rows, cols] == _board[rows + 2, cols + 2] &&
+                    _board[rows, cols] == _board[rows + 3, cols + 3])
+                {
+                    return true;
+                }
+    }
 }
 
 
