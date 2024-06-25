@@ -203,6 +203,15 @@ abstract class GameModeSelector
     public abstract int ChooseGameMode();
 }
 
+class GameSetup : GameModeSelector
+{
+    private Random _random;
+
+    public GameSetup()
+    {
+        _random = new Random();
+    }
+}
 
 
 
