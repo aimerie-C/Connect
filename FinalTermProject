@@ -172,6 +172,15 @@ class Player
         Symbol = symbol;
     }
 }
+class AIPlayer : Player
+{
+    private Random _random;
+
+    public AIPlayer() : base("AI", 'O')
+    {
+        _random = new Random();
+    }
+}
 
 
 
