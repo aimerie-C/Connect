@@ -67,7 +67,18 @@ class GameBoard
         }
         return false;
     }
-
+     public bool IsColumnOpen(int cols)
+     {
+         // Check if the column has at least one empty space
+         for (int rows = 0; rows < Rows; rows++)
+         {
+             if (_board[rows, cols] == ' ')
+             {
+                 return true; // Column has space
+             }
+         }
+         return false; // Column is full
+     }
 }
 
 
