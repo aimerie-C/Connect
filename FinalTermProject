@@ -271,6 +271,13 @@ class GameController
     private Player[] _players;
     private int _currentPlayerIndex;
 
+    public GameController(GameBoard board, Player[] players)
+    {
+        _board = board;
+        _players = players;
+        _currentPlayerIndex = 0;
+    }
+
 }
 
 
