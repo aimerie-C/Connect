@@ -277,7 +277,62 @@ class GameController
         _players = players;
         _currentPlayerIndex = 0;
     }
-
+    public void StartGame()
+    {
+        bool gameEnded = false;
+    
+        while (!gameEnded)
+        {
+            _board.DrawBoard();
+    
+            Player currentPlayer = _players[_currentPlayerIndex];
+    
+            int col;
+    
+            if (currentPlayer is AIPlayer)
+            {
+                col = ((AIPlayer)currentPlayer).GetMove(_board);
+            }
+            else
+            {
+                col = GetPlayerMove(currentPlayer);
+            }
+    
+            bool validMove = _board.PlaceSymbol(col, currentPlayer.Symbol);
+    
+            if (!validMove)
+            {
+                Console.WriteLine("Column is full. Choose another column.");
+                continue;
+            }
+    
+            if (_board.CheckWin(currentPlayer.Symbol))
+            {
+                _board.DrawBoard();
+                if (currentPlayer is AIPlayer)
+                {
+                    Console.WriteLine("AI wins!");
+                }
+                else
+                {
+                    Console.WriteLine($"\nCongratulations! {currentPlayer.Name} wins!\n");
+                }
+                gameEnded = true;
+            }
+            else if (_board.IsBoardFull())
+            {
+                _board.DrawBoard();
+                Console.WriteLine("It's a draw!");
+                gameEnded = true;
+            }
+            else
+            {
+                _currentPlayerIndex = (_currentPlayerIndex + 1) % _players.Length;
+            }
+        }
+    
+        PromptForRestart();
+    }
 }
 
 
